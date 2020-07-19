@@ -1,0 +1,30 @@
+<div class="forgot border bg-white rounded p-3 shadow-sm d-flex align-items-center justify-content-center flex-column"
+>
+  <h2 class="text-center">Forgot</h2>
+  <form [formGroup]="forgotForm" class="form-signup" (ngSubmit)="onSubmit()">
+<div class="d-flex justify-content-center mb-3 mt-3">
+  <div class="form-group">
+    <label>Email</label>
+    <input
+      type="text"
+      formControlName="email"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+    />
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+      <div *ngIf="f.email.errors.email">
+        Email must be a valid email address
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <button class="btn btn-primary mr-1" type="submit">Signup</button>
+  <button class="btn btn-secondary" type="reset" (click)="onReset()">
+    Cancel
+  </button>
+</div>
+</form>
+</div>

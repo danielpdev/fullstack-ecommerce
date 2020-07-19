@@ -1,0 +1,140 @@
+<div
+  class="container bg-white p-2 d-flex align-items-center justify-content-center"
+>
+  <form
+    class="form-horizontal"
+    [formGroup]="addProductForm"
+    (submit)="onSaveProduct()"
+    *ngIf="!isLoading"
+  >
+    <legend>Add Product</legend>
+    <div class="form-group">
+      <div class="custom-file">
+        <div>
+          <label
+            type="button"
+            class="custom-file-label"
+            (click)="filePicker.click()"
+          >
+            Pick image
+          </label>
+          <input
+            type="file"
+            class="custom-file-input"
+            id="customFile"
+            #filePicker
+            (change)="onImagePicked($event)"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="image-preview"
+      *ngIf="
+        imagePreview !== '' && imagePreview && addProductForm.get('image').valid
+      "
+    >
+      <img style="max-width: 250px;" [src]="imagePreview" />
+    </div>
+    <div class="text-danger" *ngIf="submitted && f.image.errors">
+      Image is required
+    </div>
+
+    <div class="form-group">
+      <label>Name</label>
+      <input
+        type="text"
+        formControlName="name"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+      />
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">Name is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <input
+        type="text"
+        formControlName="description"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+      />
+      <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+        <div *ngIf="f.description.errors.required">Description is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input
+        type="number"
+        formControlName="price"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.price.errors }"
+      />
+      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+        <div *ngIf="f.price.errors.required">Price is required</div>
+      </div>
+    </div>
+    <div class="d-flex align-items-baseline">
+      <label>Publish</label>
+      <input type="checkbox" formControlName="publish" class="ml-2" />
+      <label>Available</label>
+      <input type="checkbox" formControlName="available" class="ml-2" />
+      <label>Publish</label>
+      <input type="checkbox" formControlName="publish" class="ml-2" />
+      <label>Shipping</label>
+      <input type="checkbox" formControlName="shipping" class="ml-2" />
+      <label>Featured</label>
+      <input type="checkbox" formControlName="featured" class="ml-2" />
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="product_categorie">Product brand</label>
+      <div>
+        <select
+          id="product_categorie"
+          formControlName="brand"
+          name="product_categorie"
+          class="form-control"
+        >
+          <option *ngFor="let brand of brands$ | async" [value]="brand.id">{{
+            brand.name
+          }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Available Quantity</label>
+      <input
+        type="number"
+        formControlName="availableQuantity"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.availableQuantity.errors }"
+      />
+      <div
+        *ngIf="submitted && f.availableQuantity.errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="f.availableQuantity.errors.required">
+          Avialable quantity is required
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div>
+        <button
+          id="singlebutton"
+          type="submit"
+          name="singlebutton"
+          class="btn btn-primary"
+        >
+          Add Product
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

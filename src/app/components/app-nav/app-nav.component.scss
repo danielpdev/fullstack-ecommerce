@@ -1,0 +1,13 @@
+.faUser {
+    width: 50px;
+    color: #fff;
+}
+.dropdown-menu.show {
+    transform: translateX(-70%);
+    margin-top: 9px;
+    left: 7px;
+    border-radius:  0px;
+    button.dropdown-item {
+        outline: none;
+    }
+}

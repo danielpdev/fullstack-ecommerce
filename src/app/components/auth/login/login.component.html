@@ -1,0 +1,54 @@
+<form
+  class="px-4 py-3"
+  (submit)="onLogin(loginForm)"
+  #loginForm="ngForm"
+  [hidden]="isLoading"
+>
+  <div class="form-group">
+    <label>Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      #emailInput="ngModel"
+      email
+      required
+      [(ngModel)]="user.email"
+      [ngClass]="{ 'is-invalid': !emailInput.valid && !emailInput.pristine }"
+    />
+    <div
+      *ngIf="!emailInput.valid && !emailInput.pristine"
+      class="invalid-feedback"
+    >
+      <div>Email is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input
+      type="password"
+      [(ngModel)]="user.password"
+      name="password"
+      #passwordInput="ngModel"
+      required
+      class="form-control"
+      [ngClass]="{
+        'is-invalid': !passwordInput.valid && !passwordInput.pristine
+      }"
+    />
+    <div
+      *ngIf="!passwordInput.valid && !passwordInput.pristine"
+      class="invalid-feedback"
+    >
+      <div>Password is required</div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" [routerLink]="['/auth/signup']"
+  >New around here? Sign up</a
+>
+<a class="dropdown-item" [routerLink]="['/auth/forgot']"
+  >Forgot password? Reset</a
+>
