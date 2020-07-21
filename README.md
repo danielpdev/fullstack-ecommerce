@@ -1,6 +1,6 @@
-# Frontned
+# How it works
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+[![How it works](how_works_ebook.gif)](https://github.com/danielpdev)
 
 ## Development server
 
